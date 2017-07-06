@@ -8,8 +8,10 @@ module Sprangular
       :display_ship_total,
       :display_tax_total,
       :display_total,
+      :permissions,
       :token,
       :total_quantity,
+      :use_billing,
     ]
 
     def total_quantity
@@ -35,8 +37,6 @@ module Sprangular
 
     has_many :line_item_adjustments, serializer: Sprangular::AdjustmentSerializer
 
-    attribute :permissions
-
     def permissions
       { can_update: current_ability.can?(:update, object) }
     end
@@ -44,8 +44,6 @@ module Sprangular
     def line_item_adjustments
       object.line_item_promotion_adjustments
     end
-
-    attribute :use_billing
 
     def use_billing
       object.bill_address == object.ship_address
