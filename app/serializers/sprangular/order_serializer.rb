@@ -2,10 +2,15 @@ module Sprangular
   class OrderSerializer < ActiveModel::Serializer
     extend Spree::Api::ApiHelpers
     attributes *order_attributes
-    attributes | [:display_total, :display_item_total, :display_ship_total, :display_tax_total, :checkout_steps]
-
-    attribute :total_quantity
-    attribute :token
+    attributes | [
+      :checkout_steps,
+      :display_item_total,
+      :display_ship_total,
+      :display_tax_total,
+      :display_total,
+      :token,
+      :total_quantity,
+    ]
 
     def total_quantity
       object.line_items.sum(:quantity)
