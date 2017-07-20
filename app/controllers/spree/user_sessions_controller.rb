@@ -11,9 +11,6 @@ class Spree::UserSessionsController < Devise::SessionsController
   include Spree::Core::ControllerHelpers::Store
   include Sprangular::Csrf
 
-  ssl_required :new, :create, :destroy, :update
-  ssl_allowed :login_bar
-
   def create
     authenticate_spree_user!
 
